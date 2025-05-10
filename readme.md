@@ -1,11 +1,22 @@
 # Tasker
-A ridiculously simple CLI task list app in Rust made to learn some syntax. Uses a local .json file for storing your task list persistently.
+A ridiculously simple task list app in Rust made to learn some syntax. Uses a local .json file for storing your task list persistently.
+
+## Screenshot
+![Screenshot](screenshot.png)
 
 ## Usage
-### Usage: 
-tasker.exe *COMMAND*
+### Build
+Just use `cargo build`, nothing fancy.
 
-### Commands:
+### GUI
+To run the GUI version:
+`tasker.exe --gui`
+
+### CLI
+To run the CLI version
+`tasker.exe *COMMAND*`
+
+### Commands for CLI:
   add - Add a new task with the given description
   
   list - List all tasks
