@@ -2,7 +2,7 @@
 A ridiculously simple task list app in Rust made to learn some syntax. Uses a local .json file for storing your task list persistently.
 
 ## Screenshot
-![Screenshot](screenshot.png)
+<img src="screenshot.png" alt="Screenshot" style="width: 40%;" />
 
 ## Usage
 ### Build
