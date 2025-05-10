@@ -1,3 +1,6 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+#[cfg(windows)]
+
 mod task; //incldue task.rs as a module, make it available to call in particular functions like task::something
 mod gui;
 
@@ -36,18 +39,20 @@ enum Commands { //enum is a type that can take any of the listed variants
 fn main() -> Result<(), eframe::Error> {
     let cli = Cli::parse();
 
-    if cli.gui {
-        // GUI mode
+    // Default to GUI if no command is provided and --gui isn't used explicitly
+    let should_run_gui = cli.gui || cli.command.is_none();
+
+    if should_run_gui {
         let options = eframe::NativeOptions::default();
         eframe::run_native(
             "Task Manager",
             options,
             Box::new(|_cc| Box::new(gui::TaskApp::default())),
         )?;
-        return Ok(()); // important: early return
+        return Ok(());
     }
 
-    // CLI mode (now a top-level if)
+    // CLI mode
     if let Some(command) = cli.command {
         let mut manager = task::TaskManager::load("tasks.json").unwrap_or_default();
 
@@ -62,8 +67,6 @@ fn main() -> Result<(), eframe::Error> {
         }
 
         manager.save("tasks.json").ok();
-    } else {
-        eprintln!("No command provided. Use --help or --gui.");
     }
 
     Ok(())
