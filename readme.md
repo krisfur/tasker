@@ -6,7 +6,9 @@ A ridiculously simple task list app in Rust made to learn some syntax. Uses a lo
 
 ## Usage
 ### Build
-Just use `cargo build`, nothing fancy.
+Just use `cargo build --release`, nothing fancy. 
+
+On windows the resulting .exe will run as a standalone window without an annoying terminal in the background.
 
 ### GUI
 To run the GUI version:
