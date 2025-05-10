@@ -4,9 +4,9 @@ use std::{fs, io::Result};
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Task { //struct in rust is more analogous to an OOP class than to a C struct
     // define just the data held in the class here, functions belong in implementation
-    id: u32,
-    description: String,
-    done: bool,
+    pub id: u32,
+    pub description: String,
+    pub done: bool,
 }
 
 #[derive(Serialize, Deserialize, Default)]
