@@ -22,10 +22,24 @@ impl eframe::App for TaskApp {
 
             // Input to add new task
             ui.horizontal(|ui| {
-                ui.text_edit_singleline(&mut self.new_task_desc);
-                if ui.button("Add").clicked() && !self.new_task_desc.trim().is_empty() {
+                let input_id = ui.make_persistent_id("task_input");
+
+                let text_response = ui.add(
+                    egui::TextEdit::singleline(&mut self.new_task_desc)
+                        .hint_text("Enter a new task")
+                        .id(input_id),
+                );
+
+                // Pressing Enter in the text field
+                let should_add = text_response.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
+
+                if (should_add) && !self.new_task_desc.trim().is_empty() {
                     self.manager.add_task(self.new_task_desc.trim().to_string());
                     self.new_task_desc.clear();
+                    self.manager.save("tasks.json").ok();
+
+                    // Re-focus the input box
+                    ui.memory_mut(|mem| mem.request_focus(input_id));
                 }
             });
 
