@@ -39,7 +39,7 @@ impl eframe::App for TaskApp {
                     //Checkbox to toggle done
                     let response = ui.checkbox(&mut task.done, format!("{}: {}", task.id, task.description));
                     if response.changed() {
-                        changed = true;
+                        changed = true;  //checkbox toggled
                     }
 
                     //"X" button to delete
@@ -57,11 +57,6 @@ impl eframe::App for TaskApp {
 
             // Save *after* the loop, outside of the UI closures
             if changed {
-                self.manager.save("tasks.json").ok();
-            }
-
-
-            if ui.button("Save").clicked() {
                 self.manager.save("tasks.json").ok();
             }
 
