@@ -1,5 +1,5 @@
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-#[cfg(windows)]
+//#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+//#[cfg(windows)]
 
 mod task; //incldue task.rs as a module, make it available to call in particular functions like task::something
 mod gui;
